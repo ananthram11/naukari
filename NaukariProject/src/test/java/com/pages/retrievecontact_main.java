@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -66,12 +67,8 @@ public class retrievecontact_main {
 		driver.findElement(By.id("pLogin")).sendKeys("tejaswini@24");
 		driver.findElement(By.xpath("//*[@id=\"lgnFrmNew\"]/div[9]/button")).click();
 	}
-	public void clickonservices() {
-		WebElement a =driver.findElement(By.xpath("/html/body/div[1]/div/div/ul[1]/li[5]/a"));
-		WebElement b =driver.findElement(By.xpath("/html/body/div[1]/div/div/ul[1]/li[5]/div/ul[2]/li[8]/a"));
-		Actions act = new Actions(driver);
-		act.moveToElement(a);
-		act.moveToElement(b).click().build().perform();
+	public void clickoncontactus() {
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/ul[1]/li[1]/a/div")).click();
 		Set<String>winHandles2=driver.getWindowHandles();
 		 
 	    for(String winHandle:winHandles2)
@@ -79,9 +76,19 @@ public class retrievecontact_main {
 	    	driver.switchTo().window(winHandle);
 	    	
 	    }
+		JavascriptExecutor js=(JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,15000)");
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/ul/li[7]/a")).click();
+		Set<String>winHandles3=driver.getWindowHandles();
+		 
+	    for(String winHandle:winHandles3)
+	    {
+	    	driver.switchTo().window(winHandle);
+	    	
+	    }
 	}
 	public void retrieve() {
-		String ct=driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[1]/div[1]/div/p")).getText();
+		String ct=driver.findElement(By.xpath("//*[@id=\"natContact\"]/div[1]/div[1]/div[2]")).getText();
 		Excel_Operations excel = new Excel_Operations();
 		// writing into excelsheet
 		excel.write_excel(0, 0, ct);

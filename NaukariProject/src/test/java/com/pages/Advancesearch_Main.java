@@ -82,9 +82,8 @@ public class Advancesearch_Main {
 	    }
 	}
 	public void  enterdata() throws InterruptedException {
-		driver.findElement(By.xpath("//*[@id=\"advKeyskills\"]/div[1]/div[2]/input")).sendKeys("Java Developer");
-		driver.findElement(By.xpath("//*[@id=\"Sug_advLocation\"]")).sendKeys("Hyderabad");
-		driver.findElement(By.xpath("//*[@id=\"Sug_advLocation\"]")).click();
+		driver.findElement(By.xpath("//*[@id=\"advKeyskills\"]/div[1]/div[2]/input")).sendKeys("Javadevloper");
+		driver.findElement(By.xpath("//*[@id=\"Sug_advLocation\"]")).sendKeys("Hydrabad");
 		driver.findElement(By.xpath("//*[@id=\"dd_adv_workExp_year\"]/div[1]/span")).click();
 		driver.findElement(By.xpath("//*[@id=\"dd_cja_expyr3\"]")).click();
 		driver.findElement(By.xpath("//*[@id=\"dd_adv_workExp_month\"]/div[1]/span")).click();

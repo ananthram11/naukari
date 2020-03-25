@@ -19,9 +19,9 @@ public class retrievecontact_step {
 	   rt.loginn();
 	}
 
-	@Then("^click on services and move to contact us$")
-	public void click_on_services_and_move_to_contact_us() throws Throwable {
-	   rt.clickonservices();
+	@Then("^click on contact us$")
+	public void click_on_contact_us() throws Throwable {
+	 rt.clickoncontactus();
 	}
 
 	@Then("^then retrive contact information$")

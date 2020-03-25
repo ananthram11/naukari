@@ -3,8 +3,7 @@ Feature: naukri website
 
 @tc01_login
 Scenario:	
-	check that the user can login naukri account
-	
+	check that the user can login naukri account	
 	Given  user launched the chrome browser 
 	When  user opens naukri homepage 
 	Then user clicks login 
@@ -41,5 +40,5 @@ Scenario:
  
    Given user has launched the   browser
    When users has opens naukri homepage
-   Then click on services and move to contact us
+   Then click on contact us
    And then retrive contact information

@@ -71,9 +71,7 @@ public class About_Main {
 		driver.findElement(By.xpath("//*[@id=\"lgnFrmNew\"]/div[9]/button")).click();
 }
 	public void scrolldown() throws InterruptedException, IOException {
-		JavascriptExecutor js=(JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,15000)");
-		driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[2]/div[1]/ul/li[2]/a")).click();
+		driver.findElement(By.xpath("/html/body/div[1]/div/div/ul[1]/li[1]/a/div")).click();
 		Set<String>winHandles2=driver.getWindowHandles();
 		 
 	    for(String winHandle:winHandles2)
@@ -81,6 +79,17 @@ public class About_Main {
 	    	driver.switchTo().window(winHandle);
 	    	
 	    }
+		JavascriptExecutor js=(JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,20000)");
+		driver.findElement(By.xpath("/html/body/div[5]/div[2]/div[1]/ul/li[2]/a")).click();
+		Set<String>winHandles3=driver.getWindowHandles();
+		 
+	    for(String winHandle:winHandles3)
+	    {
+	    	driver.switchTo().window(winHandle);
+	    	
+	    }
+	    driver.findElement(By.xpath("//*[@id=\"btn1\"]")).click();
 		
 	}
 	public void TakeScreenshot() throws IOException, InterruptedException {
