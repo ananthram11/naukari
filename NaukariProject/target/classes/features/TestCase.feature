@@ -2,15 +2,13 @@
 Feature: naukri website
 
 @tc01_login
-Scenario:	
-	check that the user can login naukri account	
+Scenario:check that the user can login naukri account	
 	Given  user launched the chrome browser 
 	When  user opens naukri homepage 
 	Then user clicks login 
 	
-@tc02_jobalert
-Scenario:
-Check that the user able to do advancesearch
+@tc02_advancesearch
+Scenario:Check that the user able to do advancesearch
   
   
   Given user launched the chromebrowser
@@ -20,8 +18,7 @@ Check that the user able to do advancesearch
   And click on advancesearch
   
 @tc03_About
-Scenario:
- Check the user able to get information about website
+Scenario: Check the user able to get information about website
  
   Given user has launched the  chromebrowser
   When user has opens naukrihomepage

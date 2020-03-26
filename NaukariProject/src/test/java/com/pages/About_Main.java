@@ -12,21 +12,39 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class About_Main {
 	static WebDriver driver;
 	public About_Main(WebDriver driver){
 		About_Main.driver=driver;
 	}
-	public void launchChrome()
-	{
-		System.setProperty("webdriver.chrome.driver","D:\\Ananth\\chromedriver_win32 (1)\\chromedriver.exe");
+	//Launching the different browsers
+    public void launchApplication(String browser) {
 		
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-	}
+		try {
+			//FireFox browser
+			if (browser.equalsIgnoreCase("firefox")) {
+				System.setProperty("webdriver.gecko.driver","D:\\Ananth\\geckodriver.exe");
+				driver = new FirefoxDriver();
+			} 
+			//Chrome Browser
+			else if (browser.equalsIgnoreCase("chrome")) {
+				System.setProperty("webdriver.chrome.driver","D:\\Ananth\\chromedriver_win32 (1)\\chromedriver.exe");
+				driver=new ChromeDriver();
+
+			}
+
+			driver.manage().window().maximize(); //maximize the windows
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); //Waiting for 30 seconds
+		
+		} catch (WebDriverException e) {
+			System.out.println(" browser could not be launched");
+		}
+}
+	//opening website in browser
 	public void url()
 	{
 		driver.get("https://www.naukri.com/");
@@ -61,6 +79,7 @@ public class About_Main {
 		else
 			return false;
 	}
+	// login in to the application
 	public void loginn() throws IOException
 	{
 		driver.findElement(By.xpath("//*[@id=\"login_Layer\"]/div")).click();
@@ -70,8 +89,10 @@ public class About_Main {
 		driver.findElement(By.id("pLogin")).sendKeys("tejaswini@24");
 		driver.findElement(By.xpath("//*[@id=\"lgnFrmNew\"]/div[9]/button")).click();
 }
+	//scrolldown and opening about moadule 
 	public void scrolldown() throws InterruptedException, IOException {
 		driver.findElement(By.xpath("/html/body/div[1]/div/div/ul[1]/li[1]/a/div")).click();
+		//window handling
 		Set<String>winHandles2=driver.getWindowHandles();
 		 
 	    for(String winHandle:winHandles2)
@@ -92,6 +113,7 @@ public class About_Main {
 	    driver.findElement(By.xpath("//*[@id=\"btn1\"]")).click();
 		
 	}
+	//taking screenshot of the about page
 	public void TakeScreenshot() throws IOException, InterruptedException {
 		Thread.sleep(4000);
 		TakesScreenshot ts=((TakesScreenshot)driver);

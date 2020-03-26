@@ -7,8 +7,10 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import com.excel.excel_utility;
@@ -20,14 +22,27 @@ public class Login_Main {
 	public Login_Main(WebDriver driver) {
 		Login_Main.driver = driver;
 	}
+	//Launching the different browsers
+    public void launchApplication(String browser) {
+		
+		try {
+			if (browser.equalsIgnoreCase("firefox")) {
+				System.setProperty("webdriver.gecko.driver","D:\\Ananth\\geckodriver.exe");
+				driver = new FirefoxDriver();
+			} else if (browser.equalsIgnoreCase("chrome")) {
+				System.setProperty("webdriver.chrome.driver","D:\\Ananth\\chromedriver_win32 (1)\\chromedriver.exe");
+				driver=new ChromeDriver();
 
-	public void launchChrome() {
-		System.setProperty("webdriver.chrome.driver", "D:\\Ananth\\chromedriver_win32 (1)\\chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-	}
+			}
 
+			driver.manage().window().maximize(); //maximize the windows
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); //Waiting for 30 seconds
+		
+		} catch (WebDriverException e) {
+			System.out.println(" browser could not be launched");
+		}
+}
+   //Opening Url in the browser
 	public void url() {
 		driver.get("https://www.naukri.com/");
 
@@ -62,7 +77,7 @@ public class Login_Main {
 		else
 			return false;
 	}
-
+  // login to the application using excel
 	public void loginn() throws IOException {
 		for (int i = 1; i <= 1; i++) {
 

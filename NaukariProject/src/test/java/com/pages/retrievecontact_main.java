@@ -8,22 +8,40 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import com.excel.Excel_Operations;
 
 public class retrievecontact_main {
 	static WebDriver driver;
-	public void launchChrome()
-	{
-		System.setProperty("webdriver.chrome.driver","D:\\Ananth\\chromedriver_win32 (1)\\chromedriver.exe");
+	//Launching the different browsers
+    public void launchApplication(String browser) {
 		
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-	}
+		try {
+			//Firefox Browser
+			if (browser.equalsIgnoreCase("firefox")) {
+				System.setProperty("webdriver.gecko.driver","D:\\Ananth\\geckodriver.exe");
+				driver = new FirefoxDriver();
+			} 
+			//Chrome Browser
+			else if (browser.equalsIgnoreCase("chrome")) {
+				System.setProperty("webdriver.chrome.driver","D:\\Ananth\\chromedriver_win32 (1)\\chromedriver.exe");
+				driver=new ChromeDriver();
+
+			}
+
+			driver.manage().window().maximize(); //maximize the windows
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); //Waiting for 30 seconds
+		
+		} catch (WebDriverException e) {
+			System.out.println(" browser could not be launched");
+		}
+}
+    //Opening website in the browser
 	public void url()
 	{
 		driver.get("https://www.naukri.com/");
@@ -58,6 +76,7 @@ public class retrievecontact_main {
 		else
 			return false;
 	}
+	//login to the application
 	public void loginn() throws IOException
 	{
 		driver.findElement(By.xpath("//*[@id=\"login_Layer\"]/div")).click();
@@ -67,6 +86,7 @@ public class retrievecontact_main {
 		driver.findElement(By.id("pLogin")).sendKeys("tejaswini@24");
 		driver.findElement(By.xpath("//*[@id=\"lgnFrmNew\"]/div[9]/button")).click();
 	}
+	//Clicking on contact option
 	public void clickoncontactus() {
 		driver.findElement(By.xpath("/html/body/div[1]/div/div/ul[1]/li[1]/a/div")).click();
 		Set<String>winHandles2=driver.getWindowHandles();
@@ -87,6 +107,7 @@ public class retrievecontact_main {
 	    	
 	    }
 	}
+	//Retrieving contact info from application
 	public void retrieve() {
 		String ct=driver.findElement(By.xpath("//*[@id=\"natContact\"]/div[1]/div[1]/div[2]")).getText();
 		Excel_Operations excel = new Excel_Operations();
