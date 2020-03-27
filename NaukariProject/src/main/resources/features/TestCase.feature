@@ -2,14 +2,14 @@
 Feature: naukri website
 
 @tc01_login
-Scenario:To check that the user can login naukri account
+Scenario: To check that the user can login naukri account
 	
 Given  user launched the chrome browser 
 When  user opens naukri homepage 
 Then user clicks login 
 	
 @tc02_advancesearch
-Scenario:To check that the user able to do advancesearch
+Scenario: To check that the user able to do advancesearch
   
 Given user launched the chromebrowser
 When  user opens naukrihomepage
@@ -33,7 +33,7 @@ Then click on govtjobs and choose defence/govt jobs
 And click on one of option based on requirement
   
 @tc05_Contact
-Scenario:check that user retrive contact information
+Scenario: check that user retrive contact information
  
 Given user has launched the   browser
 When users has opens naukri homepage
