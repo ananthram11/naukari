@@ -10,11 +10,12 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class excel_utility {
+//utility class
 	public excel_utility(){
 		
 	}
 	public  String excel_email(int i) throws IOException {
-		  
+		  //reading excel data
 		  FileInputStream fil = new FileInputStream(new File("C:\\Users\\hp\\Downloads\\NaukariProject (2)\\NaukariProject\\src\\test\\resources\\TestData\\naukri.xlsx"));
 		  @SuppressWarnings("resource")
 		  XSSFWorkbook workbook = new XSSFWorkbook(fil);
